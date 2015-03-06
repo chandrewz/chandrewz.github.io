@@ -43,7 +43,19 @@ function init() {
     minSpareRows: 1,
     colHeaders: ['First Name', 'Middle Name', 'Last Name', 'Email'],
     colWidths: [200, 200, 200, 200],
-    contextMenu: true
+    contextMenu: true,
+    cells : function(row, col, prop) {
+      var cellProperties = {};
+
+      if (col == 3) {
+          cellProperties.readOnly = true;
+      }
+      else {
+          cellProperties.readOnly = false;
+      }
+
+      return cellProperties;
+    }
   });
 }
 
