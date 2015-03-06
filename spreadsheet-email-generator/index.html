@@ -1,0 +1,62 @@
+<html>
+
+	<head>
+		<script src="handsontable.full.min.js"></script>
+		<link rel="stylesheet" media="screen" href="handsontable.full.min.css">
+		<link rel="stylesheet" media="screen" href="style.css">
+	</head>
+
+	<body>
+
+	<div class="scrollblock intro">
+			<h1>email generator</h1>
+			<p>
+				format your spreadsheet data
+			</p>
+		</div>
+
+		<div class="scrollblock step-1">
+			<h2>step 1</h2>
+			<p>
+				choose email format
+			</p>
+			<p>
+				this will format your emails
+			</p>
+			<p>
+				ex. 'john@gmail.com', 'johnsmith@gmail.com', 'jsmith@gmail.com'
+			</p>
+			<select id="option">
+				<option value="0">[first name]</option>
+				<option value="0">[first name][last name]</option>
+				<option value="1">[first name initial][last name]</option>
+			</select>
+		</div>
+
+		<div class="scrollblock step-2">
+			<h2>step 2</h2>
+			<p>
+				enter email domain
+			</p>
+			<p>
+				this will be the @ domain
+			</p>
+			<p>
+				ex. 'gmail.com'
+			</p>
+			<input id="domain">
+		</div>
+
+		<div class="scrollblock step-3">
+			<h2>step 3</h2>
+			<p>
+				copy & paste data, then click the button
+			</p>
+			<a class="button" onclick="button()">Button</a>
+			<div id="hot" class="div-center" style="width: 800px;"></div>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+
+</html>
