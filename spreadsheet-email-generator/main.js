@@ -21,8 +21,6 @@ function button() {
       var firstName = row[2].toLowerCase().replace(/[^a-z]/gi,'');
       var middleName = row[1].toLowerCase().replace(/[^a-z]/gi,'');
       var lastName = row[0].toLowerCase().replace(/[^a-z]/gi,'');
-      row[3] = data[0][3] ? data[0][3] : '';
-      row[4] = data[0][4] ? data[0][4] : '';
       row[6] = data[0][6] ? data[0][6] : '';
       row[7] = data[0][7] ? data[0][7] : '';
       row[8] = data[0][8] ? data[0][8] : '';
@@ -55,7 +53,11 @@ function button() {
           break;
         case "6":
           // [first name].[middle initial].[last name]
-          row[5] = firstName + '.' + middleName.charAt(0) + '.' + lastName + '@' + domain;
+          if (middleName == '') {
+            row[5] = firstName + '.' + lastName + '@' + domain;
+          } else {
+            row[5] = firstName + '.' + middleName.charAt(0) + '.' + lastName + '@' + domain;
+          }
           break;
         default:
       }
