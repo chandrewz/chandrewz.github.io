@@ -72,6 +72,7 @@ function init() {
   {
     data: data,
     minSpareRows: 1,
+    rowHeaders: true,
     colHeaders: ['Last Name',  'Middle Name', 'First Name',  'Location', 'Title', 'Email', 'School District', 'State', 'Regional Service Center', 'Lead Source', 'Lead Status'],
     contextMenu: true,
     cells : function(row, col, prop) {
