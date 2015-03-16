@@ -1,5 +1,5 @@
 var data = [
-  ['John', 'Jacob', 'Smith', '']
+  ['Last Name',  'Middle Name', 'First Name',  'Location', 'Title', 'Email', 'School District', 'State', 'Regional Service Center', 'Lead Source', 'Lead Status'],
 ];
 
 var container = document.getElementById('hot');
@@ -11,21 +11,52 @@ function button() {
   var e = document.getElementById('option');
   var option = e.options[e.selectedIndex].value;
   var domain = document.getElementById('domain').value;
+  var baseRow = data[0];
   for (var i in data) {
     var row = data[i];
     if (!isRowEmpty(row)) {
-      row[0] = row[0] ? row[0].trim().toLowerCase().capitalize() : '';
-      row[1] = row[1] ? row[1].trim().toLowerCase().capitalize() : '';
-      row[2] = row[2] ? row[2].trim().toLowerCase().capitalize() : '';
+      row[0] = row[0] ? row[0].trim().capitalize() : '';
+      row[1] = row[1] ? row[1].trim().capitalize() : '';
+      row[2] = row[2] ? row[2].trim().capitalize() : '';
+      var firstName = row[2].toLowerCase().replace(/[^a-z]/gi,'');
+      var middleName = row[1].toLowerCase().replace(/[^a-z]/gi,'');
+      var lastName = row[0].toLowerCase().replace(/[^a-z]/gi,'');
+      row[3] = data[0][3] ? data[0][3] : '';
+      row[4] = data[0][4] ? data[0][4] : '';
+      row[6] = data[0][6] ? data[0][6] : '';
+      row[7] = data[0][7] ? data[0][7] : '';
+      row[8] = data[0][8] ? data[0][8] : '';
+      row[9] = data[0][9] ? data[0][9] : '';
+      row[10] = data[0][10] ? data[0][10] : '';
       switch(option) {
         case "0":
-          row[3] = row[0].toLowerCase() + '@' + domain;
+          // [first name][last name]
+          row[5] = firstName + lastName + '@' + domain;
           break;
         case "1":
-          row[3] = row[0].toLowerCase() + row[2].toLowerCase() + '@' + domain;
+          // [first name].[last name]
+          row[5] = firstName + '.' + lastName + '@' + domain;
           break;
         case "2":
-          row[3] = row[0].toLowerCase().charAt(0) + row[2].toLowerCase() + '@' + domain;
+          // [last name].[first name]
+          row[5] = lastName + '.' + firstName + '@' + domain;
+          break;
+        case "3":
+          // [first initial][last name]
+          row[5] = firstName.charAt(0) + lastName + '@' + domain;
+          break;
+        case "4":
+          // [last name][first initial]
+          row[5] = lastName + firstName.charAt(0) + '@' + domain;
+          break;
+        case "5":
+          // [first name][middle initial][last name]
+          row[5] = firstName + middleName.charAt(0) + lastName + '@' + domain;
+          break;
+        case "6":
+          // [first name].[middle initial].[last name]
+          row[5] = firstName + '.' + middleName.charAt(0) + '.' + lastName + '@' + domain;
+          break;
         default:
       }
       data[i] = row;
@@ -41,13 +72,12 @@ function init() {
   {
     data: data,
     minSpareRows: 1,
-    colHeaders: ['First Name', 'Middle Name', 'Last Name', 'Email'],
-    colWidths: [200, 200, 200, 200],
+    colHeaders: ['Last Name',  'Middle Name', 'First Name',  'Location', 'Title', 'Email', 'School District', 'State', 'Regional Service Center', 'Lead Source', 'Lead Status'],
     contextMenu: true,
     cells : function(row, col, prop) {
       var cellProperties = {};
 
-      if (col == 3) {
+      if (col == 5) {
           cellProperties.readOnly = true;
       }
       else {
@@ -60,7 +90,7 @@ function init() {
 }
 
 String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 function isRowEmpty(row) {
