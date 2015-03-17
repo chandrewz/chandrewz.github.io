@@ -72,6 +72,8 @@ function button() {
 }
 
 function init() {
+  var cellWidth = screen.width / 12;
+
   hot = new Handsontable(container,
   {
     data: data,
@@ -90,7 +92,8 @@ function init() {
       }
 
       return cellProperties;
-    }
+    },
+    stretchH: 'all'
   });
 }
 
