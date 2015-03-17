@@ -21,6 +21,8 @@ function button() {
       var firstName = row[2].toLowerCase().replace(/[^a-z]/gi,'');
       var middleName = row[1].toLowerCase().replace(/[^a-z]/gi,'');
       var lastName = row[0].toLowerCase().replace(/[^a-z]/gi,'');
+      row[3] = row[3] ? row[3].trim().capitalize() : '';
+      row[4] = row[4] ? row[4].trim().capitalize() : '';
       row[6] = data[0][6] ? data[0][6] : '';
       row[7] = data[0][7] ? data[0][7] : '';
       row[8] = data[0][8] ? data[0][8] : '';
