@@ -70,8 +70,8 @@ function button() {
           row[5] = firstName.charAt(0) + '.' + lastName + '@' + domain;
           break;
         case "9":
-          // [first initial]_[last name]
-          row[5] = firstName.charAt(0) + '_' + lastName + '@' + domain;
+          // [first name]_[last name]
+          row[5] = firstName + '_' + lastName + '@' + domain;
           break;
         default:
       }
