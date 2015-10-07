@@ -17,10 +17,9 @@ h1 {
 }
 
 p {
-  width: 960px;
   margin: 40px auto;
   color: #000;
-  line-height: 200%;
+  line-height: 175%;
 }
 
 input {
@@ -43,6 +42,15 @@ input {
   width: 100%;
   color: white;
   padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.wholeblock {
+  display: flex;
+}
+
+.halfblock {
+  width: 50%;
   padding-bottom: 40px;
 }
 
@@ -89,6 +97,6 @@ input {
   margin-top: 1em;
 }
 
-.tiny {
-  font-size: 12px;
+.small {
+  font-size: 16px;
 }
