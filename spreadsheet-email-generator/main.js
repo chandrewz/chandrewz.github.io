@@ -113,7 +113,8 @@ function init() {
 
       return cellProperties;
     },
-    stretchH: 'all'
+    stretchH: 'all',
+    copyRowsLimit: 10000
   });
 }
 

@@ -78,7 +78,7 @@ input {
   font-size: 20px;
   color: white;
   border: 3px solid white;
-  padding: 1em 1.6em;
+  padding: .5em 1em;
   font-weight: 100;
   border-radius: 5px;
   line-height: 1em;
@@ -87,4 +87,8 @@ input {
 
 #hot {
   margin-top: 1em;
+}
+
+.tiny {
+  font-size: 12px;
 }
