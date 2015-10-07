@@ -77,6 +77,10 @@ function button() {
           // [first initial][middle initial][last name]
           row[5] = firstName.charAt(0) + middleName.charAt(0) + lastName + '@' + domain;
           break;
+        case "11":
+          // lastnamefirstinitalmiddleinital
+          row[5] = lastName + firstName.charAt(0) + middleName.charAt(0) + '@' + domain;
+          break;
         default:
       }
       data[i] = row;
