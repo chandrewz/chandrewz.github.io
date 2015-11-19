@@ -82,8 +82,12 @@ function button() {
           row[5] = lastName + firstName.charAt(0) + middleName.charAt(0) + '@' + domain;
           break;
         case "12":
-          // lastnamefirstname
+          // lastname firstname
           row[5] = lastName + firstName + '@' + domain;
+          break;
+        case "13":
+          // lastname
+          row[5] = lastName + '@' + domain;
           break;
         default:
       }
