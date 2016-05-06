@@ -1,0 +1,70 @@
+<html>
+
+	<head>
+		<script src="handsontable.full.min.js"></script>
+		<link rel="stylesheet" media="screen" href="handsontable.full.min.css">
+		<link rel="stylesheet" media="screen" href="style.css">
+		<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+	</head>
+
+	<body>
+
+	<div class="scrollblock intro">
+			<h1>email generator</h1>
+			<p>
+				format your spreadsheet data
+			</p>
+		</div>
+
+		<div class="wholeblock">
+			<div class="halfblock step-1">
+				<h2>step 1</h2>
+				<p>
+					choose email format<br>
+					this will format your emails<br>
+					<span class="small">ex. 'john@gmail.com', 'johnsmith@gmail.com', 'jsmith@gmail.com'</span>
+				</p>
+				<select id="option">
+					<option value="0">[first name][last name]</option>
+					<option value="1">[first name].[last name]</option>
+					<option value="9">[first name]_[last name]</option>
+					<option value="13">[last name]</option>
+					<option value="12">[last name][first name]</option>
+					<option value="2">[last name].[first name]</option>
+					<option value="3">[first initial][last name]</option>
+					<option value="8">[first initial].[last name]</option>
+					<option value="4">[last name][first initial]</option>
+					<option value="7">[first name][last initial]</option>
+					<option value="5">[first name][middle initial][lastname]</option>
+					<option value="6">[first name].[middle initial].[lastname]</option>
+					<option value="10">[first initial][middle initial][lastname]</option>
+					<option value="11">[last name][first initial][middle initial]</option>
+				</select>
+			</div>
+
+			<div class="halfblock step-2">
+				<h2>step 2</h2>
+				<p>
+					enter email domain<br>
+					this will be the @ domain
+				</p>
+				<input id="domain" placeholder="example.com">
+			</div>
+		</div>
+
+		<div class="scrollblock step-3">
+			<h2>step 3</h2>
+			<p>
+				copy & paste data (first/last/middle)<br>
+				fill out the first row of data<br>
+				then click the button<br>
+				<span class="small">note: copy limit is capped to 10,000 for performance reasons</span>
+			</p>
+			<a class="button" onclick="button()">Go</a>
+			<div id="hot" class="div-center" style="overflow: scroll; height: 30em;"></div>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+
+</html>
