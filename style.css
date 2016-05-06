@@ -1,0 +1,106 @@
+html, body, textarea, input, option, select, pre, code, th {
+  font-family:verdana;
+  font-size:12px;
+}
+
+body, html {
+  position:relative;
+  height:100%;
+}
+
+body:before {
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:100;
+  left:0;
+  height:300px;
+  content:"";
+  background: -moz-linear-gradient(top,  rgba(221,221,221,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(221,221,221,0.65)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(221,221,221,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(221,221,221,0.65) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(221,221,221,0.65) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(221,221,221,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6dddddd', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+body:after {
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:101;
+  left:0;
+  height:300px;
+  content:"";
+  background:url(clouds.png) no-repeat 50% -420px;
+}
+
+#wrapper {
+  position:relative;
+  z-index:1000;
+  padding-top:100px;
+  width:960px;
+  text-align:center;
+  margin:0 auto;
+}
+
+.email {
+  margin-bottom:40px;
+  font-size:1.2em;
+	color:#cca300;
+}
+
+#stage {
+  margin-bottom:50px;
+}
+
+.btn-header {
+  text-align:center;
+  font-size:40px;
+  vertical-align:middle;
+  margin-right:10px;
+  margin-bottom:20px;
+}
+
+.btn {
+  background:#111 url(background.png) repeat-x top left;
+  padding:8px 15px;
+  display:inline-block;
+  border-radius:10px;
+  text-decoration:none;
+  text-align:center;
+  color:#eee;
+  box-shadow:0 0 10px #111;
+  -webkit-box-shadow:0 0 10px #111;
+  -moz-box-shadow:0 0 10px #111;
+  font-size:15px;
+}
+
+.btn:active {
+  position:relative;
+  top:1px;
+}
+
+.btn-icon {
+  vertical-align:bottom;
+}
+
+.btn-inner {
+  font-size:1.2em;
+  vertical-align:top;
+}
+
+.btn-icon {
+  margin-right:5px;
+  color:#00C0F7;
+}
+
+.btn + .btn {
+  margin-left:1em;
+}
+
+.btn, a.btn, a.btn:link, a.btn:visited, a.btn:active {
+  text-decoration:none;
+  color:white;
+}
