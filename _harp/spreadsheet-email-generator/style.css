@@ -1,5 +1,5 @@
 body {
-  background: #191919;
+  background: #FFF;
   font-family: Georgia, Times New Roman, Times, serif;
   font-size: 30px;
   text-align: center;
@@ -18,12 +18,8 @@ h1 {
 
 p {
   margin: 40px auto;
-  color: #eee;
+  color: #000;
   line-height: 175%;
-}
-
-a {
-  color: #cca300;
 }
 
 input {
