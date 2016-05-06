@@ -1,6 +1,7 @@
-h1 Welcome.
-h3 This is yours to own. Enjoy.
+h1 Welcome
+h3 webdev, code snippets, stuff learned
 
 for article, slug in public.articles._data
-  a(href="/articles/#{ slug }")
-    h2= article.title
+  h2
+    a(href="/articles/#{ slug }")
+      = article.title
