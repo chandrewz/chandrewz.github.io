@@ -1,9 +1,37 @@
-I’ve always enjoyed pretending to be a developer. Faking my way through new web technologies has become a familiar exercise. This time was different.
+I had [chandrewz.github.io](http://chandrewz.github.io) up for a while with nothing on it. I decided to finally put up a blog and I'd write down things I google at work. I was considering Pelican before stumbling upon Harp.js. Somehow, I found the installation process much easier and that converted me.
 
-The deception didn’t come from me, but my own development environment. I was using preprocessors to translate markup and code into something more common. Preprocessors make HTML & CSS much more capable.Repeatedly arranging them, however, didn’t make _me_ feel more capable.
+#### Installing Harp (make sure `npm` is installed)
 
-Still, they are so useful, I continued working however they demanded. As I understood it, continually compiling my preprocessed code down to HTML, CSS & JavaScript was necessary for every project. I thought it was just how preprocessing worked—but it’s not.
+```bash
+sudo npm install -g harp
+```
 
-This was in the back of my mind when I first tried [Harp](http://harpjs.com), the static web server with built-in preprocessing. Support for Markdown, Jade, LESS, Stylus, and more are all present. With Harp, the compiled HTML, CSS & JavaScript files aren’t tossed back into my project—I don’t need them there. Instead, as I make changes, they are delivered where they actually need to be: the browser.
+#### Initiate a harp project (using Boilerplate)
 
-[Read the rest of the post on Kenneth’s site](http://kennethormandy.com/journal/start-a-blog-with-harp)
+Yeah, you can use `harp init` by itself, but I wanted something up quickly. I also had my blog repo, so I `cd`'ed in there. I used the [Simurai](https://github.com/kennethormandy/hb-simurai) boilerplate.
+
+For a full list of templates, see: https://github.com/harp-boilerplates/registry/blob/master/index.json
+
+```bash
+harp init --boilerplate kennethormandy/hb-simurai _harp
+```
+That imports all the boilerplate files into the `_harp` directory.
+
+#### Compile & Serve
+
+From my project directory:
+
+```bash
+harp compile _harp ./
+harp server
+```
+
+I'm compiling the `_harp` directory and generating the static content into the root directory of my project. The generated website can be accessed on [localhost:9000](http://localhost:9000).
+
+#### Push it live
+
+```bash
+git push origin master
+```
+
+And we're done.

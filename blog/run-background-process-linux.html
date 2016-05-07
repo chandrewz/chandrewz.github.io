@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-  <title>Run a Background Process on Linux – Simurai’s site as a Harp boilerplate.</title>
+  <title>Run a background process on Linux – Simurai’s site as a Harp boilerplate.</title>
 
   <link rel="shortcut icon" href="img/favicon.ico">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -34,8 +34,6 @@
     <p class="aside-description">Simurai’s site as a Harp boilerplate.</p>
     <nav class="nav">
     <div class="nav-group">
-        <a class="nav-item " href="/projects">Projects</a>
-        <a class="nav-item " href="/lab">Lab</a>
         <a class="nav-item active" href="/blog">Blog</a>
     </div>
     <div class="nav-group">
@@ -54,16 +52,16 @@
   <main class="main">
 
       <article class="article">
-          <h1>Run a Background Process on Linux</h1>
+          <h1>Run a background process on Linux</h1>
           <div class="article-meta">
               
-                <a href="http://twitter.com/simurai">Simurai</a>
+                <a href="http://twitter.com/andrwchan">Andrew</a>
               
               <time class="time"> on 2016-05-06</time>
           </div>
-          <h1>Run a Process in the Background on Linux</h1><p>I bumped into this question while setting up Selenium on CentOS. Saving this for myself for future reference.</p>
+          <p>Bumped into this question while setting up Selenium and ChromeDriver on CentOS. Note to self for future reference. The importance is <code>nuhup</code> and <code>&amp;</code> to run the process in the background.</p>
 <pre><code>nohup java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.0.jar &amp;
-</code></pre><p>The importance is <code>nuhup</code> and <code>&amp;</code>.</p>
+</code></pre>
       </article>
 
       
@@ -73,7 +71,7 @@
 
   <nav class="subnav">
 
-    <div class="subnav-pagination"><a href="hello-world" class="subnav-pagination-item">←</a></div>
+    <div class="subnav-pagination"><a href="hello-world" class="subnav-pagination-item">←</a><a href="start-a-blog-with-harp" class="subnav-pagination-item">→</a></div>
 
   </nav>
 
@@ -85,7 +83,7 @@
     <a href="#top">
         <img class="footer-logo" src="/img/stamp.svg" alt="Simurai stamp">
     </a>
-    <p><small>A boilerplate for <a href="http://harpjs.com">Harp</a>.<br/>Launch it instantly <a href="https://www.harp.io/apps/new?boilerplate=kennethormandy/hb-simurai">on the Harp Platform</a>.</small></p>
+    <p><small>Powered by <a href="http://harpjs.com">Harp</a>.</p>
 </footer>
 
     </div>

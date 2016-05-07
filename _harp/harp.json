@@ -5,24 +5,12 @@
     "url": "http://github.com/kennethormandy/hb-simurai",
     "description": "Simurai’s site as a Harp boilerplate.",
     "authors": {
-      "simurai": {
-        "name": "Simurai",
-        "email": "sim@simurai.com",
-        "bio": "UIX Designer and CSS Doodler",
-        "twitter": "simurai",
-        "github": "simurai",
-        "dribbble": "simurai",
-        "tlkio": "simurai",
-        "codepen": "simurai"
-      },
-      "kennethormandy": {
-        "name": "Kenneth Ormandy",
-        "email": "kenneth@chloi.io",
-        "bio": "Designer at Chloi Inc.",
-        "twitter": "kennethormandy",
-        "github": "kennethormandy",
-        "dribbble": "kennethormandy",
-        "rdio": "kennethormandy"
+      "andrew": {
+        "name": "Andrew",
+        "email": "chandrew@utexas.edu",
+        "bio": "Wololo",
+        "twitter": "andrwchan",
+        "github": "chandrewz"
       }
     },
     "service": {

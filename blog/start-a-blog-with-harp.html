@@ -34,8 +34,6 @@
     <p class="aside-description">Simurai’s site as a Harp boilerplate.</p>
     <nav class="nav">
     <div class="nav-group">
-        <a class="nav-item " href="/projects">Projects</a>
-        <a class="nav-item " href="/lab">Lab</a>
         <a class="nav-item active" href="/blog">Blog</a>
     </div>
     <div class="nav-group">
@@ -57,15 +55,26 @@
           <h1>Start a blog with Harp</h1>
           <div class="article-meta">
               
-                <a href="http://twitter.com/kennethormandy">Kenneth Ormandy</a>
+                <a href="http://twitter.com/andrwchan">Andrew</a>
               
-              <time class="time"> on 2014-05-07</time>
+              <time class="time"> on 2016-05-07</time>
           </div>
-          <p>I’ve always enjoyed pretending to be a developer. Faking my way through new web technologies has become a familiar exercise. This time was different.</p>
-<p>The deception didn’t come from me, but my own development environment. I was using preprocessors to translate markup and code into something more common. Preprocessors make HTML &amp; CSS much more capable.Repeatedly arranging them, however, didn’t make <em>me</em> feel more capable.</p>
-<p>Still, they are so useful, I continued working however they demanded. As I understood it, continually compiling my preprocessed code down to HTML, CSS &amp; JavaScript was necessary for every project. I thought it was just how preprocessing worked—but it’s not.</p>
-<p>This was in the back of my mind when I first tried <a href="http://harpjs.com">Harp</a>, the static web server with built-in preprocessing. Support for Markdown, Jade, LESS, Stylus, and more are all present. With Harp, the compiled HTML, CSS &amp; JavaScript files aren’t tossed back into my project—I don’t need them there. Instead, as I make changes, they are delivered where they actually need to be: the browser.</p>
-<p><a href="http://kennethormandy.com/journal/start-a-blog-with-harp">Read the rest of the post on Kenneth’s site</a></p>
+          <p>I had <a href="http://chandrewz.github.io">chandrewz.github.io</a> up for a while with nothing on it. I decided to finally put up a blog and I&#39;d write down things I google at work. I was considering Pelican before stumbling upon Harp.js. Somehow, I found the installation process much easier and that converted me.</p>
+<h4>Installing Harp (make sure <code>npm</code> is installed)</h4><pre><code class="language-bash">sudo npm install -g harp
+</code></pre>
+<h4>Initiate a harp project (using Boilerplate)</h4><p>Yeah, you can use <code>harp init</code> by itself, but I wanted something up quickly. I also had my blog repo, so I <code>cd</code>&#39;ed in there. I used the <a href="https://github.com/kennethormandy/hb-simurai">Simurai</a> boilerplate.</p>
+<p>For a full list of templates, see: <a href="https://github.com/harp-boilerplates/registry/blob/master/index.json">https://github.com/harp-boilerplates/registry/blob/master/index.json</a></p>
+<pre><code class="language-bash">harp init --boilerplate kennethormandy/hb-simurai _harp
+</code></pre>
+<p>That imports all the boilerplate files into the <code>_harp</code> directory.</p>
+<h4>Compile &amp; Serve</h4><p>From my project directory:</p>
+<pre><code class="language-bash">harp compile _harp ./
+harp server
+</code></pre>
+<p>I&#39;m compiling the <code>_harp</code> directory and generating the static content into the root directory of my project. The generated website can be accessed on <a href="http://localhost:9000">localhost:9000</a>.</p>
+<h4>Push it live</h4><pre><code class="language-bash">git push origin master
+</code></pre>
+<p>And we&#39;re done.</p>
       </article>
 
       
@@ -75,7 +84,7 @@
 
   <nav class="subnav">
 
-    <div class="subnav-pagination"><a href="hello-world" class="subnav-pagination-item">→</a></div>
+    <div class="subnav-pagination"><a href="run-background-process-linux" class="subnav-pagination-item">←</a></div>
 
   </nav>
 
@@ -87,7 +96,7 @@
     <a href="#top">
         <img class="footer-logo" src="/img/stamp.svg" alt="Simurai stamp">
     </a>
-    <p><small>A boilerplate for <a href="http://harpjs.com">Harp</a>.<br/>Launch it instantly <a href="https://www.harp.io/apps/new?boilerplate=kennethormandy/hb-simurai">on the Harp Platform</a>.</small></p>
+    <p><small>Powered by <a href="http://harpjs.com">Harp</a>.</p>
 </footer>
 
     </div>
