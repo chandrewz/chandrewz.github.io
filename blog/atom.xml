@@ -11,7 +11,7 @@
        
         <item>
           <title>Start a blog with Harp</title>
-          <description><![CDATA[<p>I had <a href="http://chandrewz.github.io">chandrewz.github.io</a> up for a while with nothing on it. I decided to finally put up a blog and I&#39;d write down things I google at work. I was considering Pelican before stumbling upon Harp.js. Somehow, I found the installation process much easier and that converted me.</p>
+          <description><![CDATA[<p>I had <a href="http://chandrewz.github.io">chandrewz.github.io</a> up for a while with nothing on it. I decided to put up a blog and I&#39;d write down things I google at work. I was considering Pelican before stumbling upon Harp.js. I found Harp&#39;s installation process much easier and that converted me.</p>
 <h4>Installing Harp (make sure <code>npm</code> is installed)</h4><pre><code class="language-bash">sudo npm install -g harp
 </code></pre>
 <h4>Initiate a harp project (using Boilerplate)</h4><p>Yeah, you can use <code>harp init</code> by itself, but I wanted something up quickly. I also had my blog repo, so I <code>cd</code>&#39;ed in there. I used the <a href="https://github.com/kennethormandy/hb-simurai">Simurai</a> boilerplate.</p>
