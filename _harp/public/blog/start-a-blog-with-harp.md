@@ -1,4 +1,4 @@
-I had [chandrewz.github.io](http://chandrewz.github.io) up for a while with nothing on it. I decided to finally put up a blog and I'd write down things I google at work. I was considering Pelican before stumbling upon Harp.js. Somehow, I found the installation process much easier and that converted me.
+I had [chandrewz.github.io](http://chandrewz.github.io) up for a while with nothing on it. I decided to put up a blog and I'd write down things I google at work. I was considering Pelican before stumbling upon Harp.js. I found Harp's installation process much easier and that converted me.
 
 #### Installing Harp (make sure `npm` is installed)
 
