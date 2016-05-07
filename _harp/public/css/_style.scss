@@ -2,21 +2,22 @@
 
 body {
     margin: 0;
-    color: hsl(0, 0%, 36%);
+    color: #eee;
     font-family: 'Open Sans', sans-serif;
-    background-color: hsl(30, 30%, 96%); /* rgb(248, 245, 242) */
+    background-color: #191919;
     line-height: 1.5;
 }
 
 a {
     text-decoration: none;
-    color: hsl(220,60%,60%);
+    color: #00C0F7;
 }
 a:visited {
     color: hsl(220, 30%, 60%);
 }
-a:hover {
-    color: hsl(220,60%,70%);
+.index a:hover,
+article.article a:hover, {
+    border-bottom: 1px dotted #00C0F7;
 }
 a:active {
     color: hsl(220,60%,50%);
@@ -25,7 +26,7 @@ a:active {
 b, strong,
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
-    color: hsl(0, 0%, 20%);
+    color: #cca300;
 }
 
 h1 {
@@ -44,7 +45,6 @@ ul {
     max-width: 760px;
     padding: 3em 1em;
     margin: 0 auto;
-    text-shadow: 0px 1px 0px hsla(0,0%,100%,.8);
 }
 
 .title--404 {
@@ -431,19 +431,16 @@ pre[class*='language-'] > code[data-language]:after {
 
 .aside a,
 .aside a:visited {
-	color: inherit;
-}
-
-.aside a:hover {
-	color: hsl(0, 0%, 74%);
+	color: #6AB825;
+    border: none;
 }
 
 .aside a:active {
-	color: hsl(0, 0%, 68%);
+	color: #eee;
 }
 
 .aside a.active {
-    color: hsl(0, 0%, 20%);
+    color: #eee;
     font-weight: 400;
 }
 

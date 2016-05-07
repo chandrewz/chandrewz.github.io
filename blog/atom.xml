@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Simurai</title>
-    <link>http://github.com/kennethormandy/hb-simurai</link>
-    <description>Simurai’s site as a Harp boilerplate.</description>
-    <atom:link href="http://github.com/kennethormandy/hb-simurai/blog/atom.xml" rel="self" type="application/rss+xml" />
+    <title>Wololo</title>
+    <link>http://chandrewz.github.io</link>
+    <description>code, work, webdev</description>
+    <atom:link href="http://chandrewz.github.io/blog/atom.xml" rel="self" type="application/rss+xml" />
     
        
     
@@ -29,8 +29,8 @@ harp server
 <p>And we&#39;re done.</p>
 ]]></description>
           <pubDate>Fri May 06 2016 19:00:00 GMT-0500 (CDT)</pubDate>
-          <link>http://github.com/kennethormandy/hb-simurai/blog/[object Object]</link>
-          <guid isPermaLink="true">http://github.com/kennethormandy/hb-simurai/blog/[object Object]</guid>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
         </item>
       
     
@@ -41,8 +41,8 @@ harp server
 <pre><code>nohup java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.0.jar &amp;
 </code></pre>]]></description>
           <pubDate>Thu May 05 2016 19:00:00 GMT-0500 (CDT)</pubDate>
-          <link>http://github.com/kennethormandy/hb-simurai/blog/[object Object]</link>
-          <guid isPermaLink="true">http://github.com/kennethormandy/hb-simurai/blog/[object Object]</guid>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
         </item>
       
     
@@ -52,8 +52,8 @@ harp server
           <description><![CDATA[<p>Hi. Let’s make a simple blog with <a href="http://harpjs.com">Harp</a>.</p>
 ]]></description>
           <pubDate>Thu May 05 2016 19:00:00 GMT-0500 (CDT)</pubDate>
-          <link>http://github.com/kennethormandy/hb-simurai/blog/[object Object]</link>
-          <guid isPermaLink="true">http://github.com/kennethormandy/hb-simurai/blog/[object Object]</guid>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
         </item>
       
     
