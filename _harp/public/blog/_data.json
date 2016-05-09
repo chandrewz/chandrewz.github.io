@@ -2,14 +2,14 @@
   "atom": {
     "layout": false
   },
+  "selenium-on-centos": {
+    "title": "Set up and run Selenium on CentOS",
+    "date": "2016-05-08",
+    "author": "andrew"
+  },
   "start-a-blog-with-harp": {
     "title": "Start a blog with Harp",
     "date": "2016-05-07",
-    "author": "andrew"
-  },
-  "run-background-process-linux": {
-    "title": "Run a background process on Linux",
-    "date": "2016-05-06",
     "author": "andrew"
   },
   "hello-world": {

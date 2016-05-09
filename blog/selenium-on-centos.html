@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html id="top">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+  <title>Set up and run Selenium on CentOS – code, work, webdev</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- {% if page.blog %}
+  <link rel="alternate" type="application/atom+xml" title="simurai" href="http://feeds.feedburner.com/simurai">
+  {% endif %} -->
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <aside class="aside">
+  <a href="/">
+    <!-- If you want to use your picture instead,
+         you can give the image the `aside-avatar` class -->
+    <img class="" src="/img/stamp.svg" alt="Wololo avatar">
+  </a>
+  <a class="aside-hamburger" href="#top"></a>
+  <div class="aside-target">
+    <a href="/">
+      <h1 class="aside-title">Wololo</h1>
+    </a>
+    <p class="aside-description">code, work, webdev</p>
+    <nav class="nav">
+    <div class="nav-group">
+        <a class="nav-item active" href="/blog">Blog</a>
+    </div>
+    <div class="nav-group">
+        <a class="nav-item " href="/about">About</a>
+        <a class="nav-item " href="/contact">Contact</a>
+    </div>
+</nav>
+
+  </div>
+</aside>
+
+
+        
+          
+
+  <main class="main">
+
+      <article class="article">
+          <h1>Set up and run Selenium on CentOS</h1>
+          <div class="article-meta">
+              
+                <a href="http://twitter.com/andrwchan">Andrew</a>
+              
+              <time class="time"> on 2016-05-08</time>
+          </div>
+          <p>Here&#39;s my steps for running Selenium WebDriver in PHP on CentOS 7. I had a fresh server with nothing installed. I also opt for using ChromeDriver. You&#39;ll want to check out the repo (<a href="https://github.com/facebook/php-webdriver">facebook/php-webdriver</a>) and get things running locally before proceeding.</p>
+<h3>Check version of CentOS</h3><p>I used an older server running CentOS 5 and ran into complications, so I made sure I was on CentOS 7.</p>
+<pre><code>$ cat /etc/redhat-release
+CentOS Linux release 7.2.1511 (Core)
+</code></pre><h3>Install Java &amp; PHP on CentOS</h3><p>Skip this if Java and PHP are installed. Make sure you have root privileges as well.</p>
+<h4>Java</h4><pre><code>yum install java-1.7.0-openjdk-devel
+</code></pre><p>The <code>java</code> command should be available.</p>
+<pre><code>$ java -version
+java version &quot;1.7.0_101&quot;
+OpenJDK Runtime Environment (rhel-2.6.6.1.el7_2-x86_64 u101-b00)
+OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
+</code></pre><p>Cool, I&#39;m also on a 64-bit machine.</p>
+<h4>PHP</h4><pre><code>yum install php
+</code></pre><h3>Install Google Chrome on CentOS</h3><p>This step is optional if Chrome isn&#39;t your thing. For my project, this is all I need. I followed the instructions from <a href="http://chrome.richardlloyd.org.uk/">chrome.richardlloyd.org.uk</a>.</p>
+<pre><code>wget http://chrome.richardlloyd.org.uk/install_chrome.sh
+chmod u+x install_chrome.sh
+./install_chrome.sh
+</code></pre><p>Confirm that <code>google-chrome</code> works.</p>
+<pre><code>$ google-chrome --version
+Google Chrome 50.0.2661.94
+</code></pre><h3>Download Selenium Server &amp; ChromeDriver</h3><h4>Selenium Server</h4><p>You&#39;re looking for the Selenium server as <code>selenium-server-standalone-#.jar</code> provided here: <a href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a>. I&#39;m using <code>selenium-server-standalone-2.53.0.jar</code>.</p>
+<h4>ChromeDriver</h4><p>Next, I need <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">ChromeDriver</a>. Download the appropriate release. I&#39;m sure there&#39;s other ways to install ChromeDriver but I download the file directly.</p>
+<p>FTP into the server upload them. I keep these 2 files in the project folder.</p>
+<p>Go ahead and make <code>chromedriver</code> executable.</p>
+<pre><code>chmod +x chromedriver
+</code></pre><h3>Run as a background process</h3><p>The importance is <code>nuhup</code> and <code>&amp;</code> to run a process in the background on Linux.</p>
+<pre><code>nohup java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.0.jar &amp;
+</code></pre><h4>Kill the process</h4><p>Use <code>ps</code> to view running processes.</p>
+<pre><code>$ ps
+  PID TTY          TIME CMD
+ 5260 pts/1    00:00:00 bash
+ 5527 pts/1    00:00:00 java
+ 5550 pts/1    00:00:00 ps
+</code></pre><p>And to terminate:</p>
+<pre><code>kill 5527
+</code></pre><h3>Run a test</h3><p>Make sure lib</p>
+<pre><code>php example.php
+</code></pre>
+      </article>
+
+      
+
+
+  </main>
+
+  <nav class="subnav">
+
+    <div class="subnav-pagination"><a href="start-a-blog-with-harp" class="subnav-pagination-item">←</a></div>
+
+  </nav>
+
+
+
+        
+
+        <footer class="footer">
+    <a href="#top">
+        <img class="footer-logo" src="/img/stamp.svg" alt="Wololo stamp">
+    </a>
+    <p><small>Powered by <a href="http://harpjs.com">Harp</a>.</p>
+</footer>
+
+    </div>
+
+    
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-77434816-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/prism.js"></script>
+
+</body>
+</html>

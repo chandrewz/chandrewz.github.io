@@ -10,25 +10,46 @@
     
        
         <item>
-          <title>Start a blog with Harp</title>
-          <description><![CDATA[<p>I had <a href="http://chandrewz.github.io">chandrewz.github.io</a> up for a while with nothing on it. I decided to put up a blog and I&#39;d write down things I google at work. I was considering Pelican before stumbling upon Harp.js. I found Harp&#39;s installation process much easier and that converted me.</p>
-<h4>Installing Harp (make sure <code>npm</code> is installed)</h4><pre><code class="language-bash">sudo npm install -g harp
-</code></pre>
-<h4>Initiate a harp project (using Boilerplate)</h4><p>Yeah, you can use <code>harp init</code> by itself, but I wanted something up quickly. I also had my blog repo, so I <code>cd</code>&#39;ed in there. I used the <a href="https://github.com/kennethormandy/hb-simurai">Simurai</a> boilerplate.</p>
-<p>For a full list of templates, see: <a href="https://github.com/harp-boilerplates/registry/blob/master/index.json">https://github.com/harp-boilerplates/registry/blob/master/index.json</a></p>
-<pre><code class="language-bash">harp init --boilerplate kennethormandy/hb-simurai _harp
-</code></pre>
-<p>That imports all the boilerplate files into the <code>_harp</code> directory.</p>
-<h4>Compile &amp; Serve</h4><p>From my project directory:</p>
-<pre><code class="language-bash">harp compile _harp ./
-harp server
-</code></pre>
-<p>I&#39;m compiling the <code>_harp</code> directory and generating the static content into the root directory of my project. The generated website can be accessed on <a href="http://localhost:9000">localhost:9000</a>.</p>
-<h4>Push it live</h4><pre><code class="language-bash">git push origin master
-</code></pre>
-<p>And we&#39;re done.</p>
-]]></description>
-          <pubDate>Fri May 06 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <title>Set up and run Selenium on CentOS</title>
+          <description><![CDATA[<p>Here&#39;s my steps for running Selenium WebDriver in PHP on CentOS 7. I had a fresh server with nothing installed. I also opt for using ChromeDriver. You&#39;ll want to check out the repo (<a href="https://github.com/facebook/php-webdriver">facebook/php-webdriver</a>) and get things running locally before proceeding.</p>
+<h3>Check version of CentOS</h3><p>I used an older server running CentOS 5 and ran into complications, so I made sure I was on CentOS 7.</p>
+<pre><code>$ cat /etc/redhat-release
+CentOS Linux release 7.2.1511 (Core)
+</code></pre><h3>Install Java &amp; PHP on CentOS</h3><p>Skip this if Java and PHP are installed. Make sure you have root privileges as well.</p>
+<h4>Java</h4><pre><code>yum install java-1.7.0-openjdk-devel
+</code></pre><p>The <code>java</code> command should be available.</p>
+<pre><code>$ java -version
+java version &quot;1.7.0_101&quot;
+OpenJDK Runtime Environment (rhel-2.6.6.1.el7_2-x86_64 u101-b00)
+OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
+</code></pre><p>Cool, I&#39;m also on a 64-bit machine.</p>
+<h4>PHP</h4><pre><code>yum install php
+</code></pre><h3>Install Google Chrome on CentOS</h3><p>This step is optional if Chrome isn&#39;t your thing. For my project, this is all I need. I followed the instructions from <a href="http://chrome.richardlloyd.org.uk/">chrome.richardlloyd.org.uk</a>.</p>
+<pre><code>wget http://chrome.richardlloyd.org.uk/install_chrome.sh
+chmod u+x install_chrome.sh
+./install_chrome.sh
+</code></pre><p>Confirm that <code>google-chrome</code> works.</p>
+<pre><code>$ google-chrome --version
+Google Chrome 50.0.2661.94
+</code></pre><h3>Download Selenium Server &amp; ChromeDriver</h3><h4>Selenium Server</h4><p>You&#39;re looking for the Selenium server as <code>selenium-server-standalone-#.jar</code> provided here: <a href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a>. I&#39;m using <code>selenium-server-standalone-2.53.0.jar</code>.</p>
+<h4>ChromeDriver</h4><p>Next, I need <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">ChromeDriver</a>. Download the appropriate release. I&#39;m sure there&#39;s other ways to install ChromeDriver but I download the file directly.</p>
+<p>FTP into the server upload them. I keep these 2 files in the project folder.</p>
+<p>Go ahead and make <code>chromedriver</code> executable.</p>
+<pre><code>chmod +x chromedriver
+</code></pre><h3>Run as a background process</h3><p>The importance is <code>nuhup</code> and <code>&amp;</code> to run a process in the background on Linux.</p>
+<pre><code>nohup java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.0.jar &amp;
+</code></pre><h4>Kill the process</h4><p>Use <code>ps</code> to view running processes.</p>
+<pre><code>$ ps
+  PID TTY          TIME CMD
+ 5260 pts/1    00:00:00 bash
+ 5527 pts/1    00:00:00 java
+ 5550 pts/1    00:00:00 ps
+</code></pre><p>And to terminate:</p>
+<pre><code>kill 5527
+</code></pre><h3>Run a test</h3><p>Make sure lib</p>
+<pre><code>php example.php
+</code></pre>]]></description>
+          <pubDate>Sat May 07 2016 19:00:00 GMT-0500 (CDT)</pubDate>
           <link>http://chandrewz.github.io/blog/[object Object]</link>
           <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
         </item>
@@ -36,11 +57,25 @@ harp server
     
        
         <item>
-          <title>Run a background process on Linux</title>
-          <description><![CDATA[<p>Bumped into this question while setting up Selenium and ChromeDriver on CentOS. Note to self for future reference. The importance is <code>nuhup</code> and <code>&amp;</code> to run the process in the background.</p>
-<pre><code>nohup java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.0.jar &amp;
-</code></pre>]]></description>
-          <pubDate>Thu May 05 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <title>Start a blog with Harp</title>
+          <description><![CDATA[<p>I had <a href="http://chandrewz.github.io">chandrewz.github.io</a> up for a while with nothing on it. I decided to put up a blog and I&#39;d write down things I google at work and TIL&#39;s. I was considering Pelican before stumbling upon Harp.js. I found Harp&#39;s installation process much easier and that converted me.</p>
+<h3>Installing Harp (make sure <code>npm</code> is installed)</h3><pre><code class="language-bash">sudo npm install -g harp
+</code></pre>
+<h3>Initiate a harp project (using Boilerplate)</h3><p>Yeah, you can use <code>harp init</code> by itself, but I wanted something up quickly. I also had my blog repo, so I <code>cd</code>&#39;ed in there. I used the <a href="https://github.com/kennethormandy/hb-simurai">Simurai</a> boilerplate.</p>
+<p>For a full list of templates, see: <a href="https://github.com/harp-boilerplates/registry/blob/master/index.json">https://github.com/harp-boilerplates/registry/blob/master/index.json</a></p>
+<pre><code class="language-bash">harp init --boilerplate kennethormandy/hb-simurai _harp
+</code></pre>
+<p>That imports all the boilerplate files into the <code>_harp</code> directory.</p>
+<h3>Compile &amp; Serve</h3><p>From my project directory:</p>
+<pre><code class="language-bash">harp compile _harp ./
+harp server
+</code></pre>
+<p>I&#39;m compiling the <code>_harp</code> directory and generating the static content into the root directory of my project. The generated website can be accessed on <a href="http://localhost:9000">localhost:9000</a>.</p>
+<h3>Push it live</h3><pre><code class="language-bash">git push origin master
+</code></pre>
+<p>And we&#39;re done.</p>
+]]></description>
+          <pubDate>Fri May 06 2016 19:00:00 GMT-0500 (CDT)</pubDate>
           <link>http://chandrewz.github.io/blog/[object Object]</link>
           <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
         </item>
