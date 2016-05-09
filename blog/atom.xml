@@ -11,44 +11,42 @@
        
         <item>
           <title>Set up and run Selenium on CentOS</title>
-          <description><![CDATA[<p>Here&#39;s my steps for running Selenium WebDriver in PHP on CentOS 7. I had a fresh server with nothing installed. I also opt for using ChromeDriver. You&#39;ll want to check out the repo (<a href="https://github.com/facebook/php-webdriver">facebook/php-webdriver</a>) and get things running locally before proceeding.</p>
+          <description><![CDATA[<p>Getting Selenium + Chrome + CentOS up was an absolute nightmare. I give up on Chrome and  ChromeDriver. I had Selenium and Chrome working locally on my Mac, but the exact steps just do not rollover. After hours, I switched over to Firefox and it worked in 5 minutes. No additional driver needed either.</p>
+<p>Here&#39;s my steps for running Selenium WebDriver in PHP on CentOS 7, using <em>Firefox</em>. I had a fresh server with nothing installed. You&#39;ll want to check out the repo (<a href="https://github.com/facebook/php-webdriver">facebook/php-webdriver</a>) and get things running locally before proceeding.</p>
 <h3>Check version of CentOS</h3><p>I used an older server running CentOS 5 and ran into complications, so I made sure I was on CentOS 7.</p>
 <pre><code>$ cat /etc/redhat-release
 CentOS Linux release 7.2.1511 (Core)
 </code></pre><h3>Install Java &amp; PHP on CentOS</h3><p>Skip this if Java and PHP are installed. Make sure you have root privileges as well.</p>
-<h4>Java</h4><pre><code>yum install java-1.7.0-openjdk-devel
+<h4>Java</h4><pre><code>$ yum install java-1.7.0-openjdk-devel
 </code></pre><p>The <code>java</code> command should be available.</p>
 <pre><code>$ java -version
 java version &quot;1.7.0_101&quot;
 OpenJDK Runtime Environment (rhel-2.6.6.1.el7_2-x86_64 u101-b00)
 OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
-</code></pre><p>Cool, I&#39;m also on a 64-bit machine.</p>
-<h4>PHP</h4><pre><code>yum install php
-</code></pre><h3>Install Google Chrome on CentOS</h3><p>This step is optional if Chrome isn&#39;t your thing. For my project, this is all I need. I followed the instructions from <a href="http://chrome.richardlloyd.org.uk/">chrome.richardlloyd.org.uk</a>.</p>
-<pre><code>wget http://chrome.richardlloyd.org.uk/install_chrome.sh
-chmod u+x install_chrome.sh
-./install_chrome.sh
-</code></pre><p>Confirm that <code>google-chrome</code> works.</p>
-<pre><code>$ google-chrome --version
-Google Chrome 50.0.2661.94
-</code></pre><h3>Download Selenium Server &amp; ChromeDriver</h3><h4>Selenium Server</h4><p>You&#39;re looking for the Selenium server as <code>selenium-server-standalone-#.jar</code> provided here: <a href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a>. I&#39;m using <code>selenium-server-standalone-2.53.0.jar</code>.</p>
-<h4>ChromeDriver</h4><p>Next, I need <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">ChromeDriver</a>. Download the appropriate release. I&#39;m sure there&#39;s other ways to install ChromeDriver but I download the file directly.</p>
-<p>FTP into the server upload them. I keep these 2 files in the project folder.</p>
-<p>Go ahead and make <code>chromedriver</code> executable.</p>
-<pre><code>chmod +x chromedriver
-</code></pre><h3>Run as a background process</h3><p>The importance is <code>nuhup</code> and <code>&amp;</code> to run a process in the background on Linux.</p>
-<pre><code>nohup java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-2.53.0.jar &amp;
-</code></pre><h4>Kill the process</h4><p>Use <code>ps</code> to view running processes.</p>
+</code></pre><h4>PHP</h4><pre><code>$ yum install php
+</code></pre><h3>Install Firefox on CentOS</h3><p>I read so many articles on Selnium and CentOS, but this gist saved the day: <a href="https://gist.github.com/textarcana/5855427">https://gist.github.com/textarcana/5855427</a></p>
+<pre><code>$ yum -y install firefox Xvfb libXfont Xorg
+$ yum -y groupinstall &quot;X Window System&quot; &quot;Desktop&quot; &quot;Fonts&quot; &quot;General Purpose Desktop&quot;
+</code></pre><p>Launch an XWindows Virtual Frame Buffer(XVFB) session on display port 99:</p>
+<pre><code>$ Xvfb :99 -ac -screen 0 1280x1024x24 &amp;
+</code></pre><p>Tell all XWindows applications in this terminal session to use the new Xvfb display port:</p>
+<pre><code>$ export DISPLAY=:99
+</code></pre><h3>Download Selenium Server</h3><p>You&#39;re looking for the Selenium server as <code>selenium-server-standalone-#.jar</code> provided here: <a href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a>. I&#39;m using <code>selenium-server-standalone-2.53.0.jar</code>.</p>
+<h4>Run it as a background process</h4><p>The importance is <code>nuhup</code> and <code>&amp;</code> to run a process in the background on Linux.</p>
+<pre><code>nohup java -jar selenium-server-standalone-2.53.0.jar &amp;
+</code></pre><h4>Kill the process</h4><p>TIL: If you want to kill the process, use <code>ps</code> to view running processes.</p>
 <pre><code>$ ps
   PID TTY          TIME CMD
  5260 pts/1    00:00:00 bash
  5527 pts/1    00:00:00 java
  5550 pts/1    00:00:00 ps
 </code></pre><p>And to terminate:</p>
-<pre><code>kill 5527
-</code></pre><h3>Run a test</h3><p>Make sure lib</p>
-<pre><code>php example.php
-</code></pre>]]></description>
+<pre><code>$ kill 5527
+</code></pre><h3>Run a test</h3><p>Make sure libraries have been moved over or installed properly to the server. </p>
+<pre><code>$ wget https://raw.githubusercontent.com/facebook/php-webdriver/community/example.php
+$ php example.php
+</code></pre><p>Finally. I can begin running my test cases.</p>
+]]></description>
           <pubDate>Sat May 07 2016 19:00:00 GMT-0500 (CDT)</pubDate>
           <link>http://chandrewz.github.io/blog/[object Object]</link>
           <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
