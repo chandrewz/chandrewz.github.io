@@ -1,4 +1,4 @@
-Getting Selenium + Chrome + CentOS up was an absolute nightmare. I give up on Chrome and  ChromeDriver. I had Selenium and Chrome working locally on my Mac, but the exact steps just do not rollover. After hours, I switched over to Firefox and it worked in 5 minutes. No additional driver needed either.
+Getting Selenium + Chrome + CentOS up was a nightmare. I give up on Chrome and  ChromeDriver on CentOS. I had Selenium and Chrome working locally on my Mac, but the exact steps do not rollover. After hours, I switched over to Firefox and it worked in 5 minutes. No additional driver needed either.
 
 Here's my steps for running Selenium WebDriver in PHP on CentOS 7, using ***Firefox***. I had a fresh server with nothing installed. You'll want to check out the repo ([facebook/php-webdriver](https://github.com/facebook/php-webdriver)) and get things running locally before proceeding.
 
