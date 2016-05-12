@@ -10,6 +10,122 @@
     
        
         <item>
+          <title>Authentication with Vue Router</title>
+          <description><![CDATA[<p>I&#39;ve been working with <a href="https://vuejs.org/">Vue.js</a> for a project for about a month now, and it&#39;s pretty fun! I was searching up how to handle authentication with <a href="http://router.vuejs.org/en/">vue-router</a> and there weren&#39;t too many resources. I originally had a parent function that handled redirects upon <code>ready()</code>, but there are a few problems:</p>
+<ol>
+<li>Too many one-liners. I have to call the function each time in many views.</li>
+<li>You see a &quot;flash&quot; of the the dashboard before being redirected the the login page because <code>ready()</code> fires the redirect after part of the rendering is done.</li>
+</ol>
+<p>So I knew I had to do it better.</p>
+<p>Ryan Chenkie wrote a tutorial on authentication: <a href="https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/">Build an App with Vue.js: From Authentication to Calling an API</a>. It helped me get started but I ended up doing things a differently. He uses vue-router&#39;s <code>canActivate</code> hook and injects it in his <code>.vue</code> file. I noticed in vue-router&#39;s documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of <code>beforeEach</code> like the documentation does in its example.</p>
+<h4>Write an auth service</h4><p>I had my login/logout functions in my .vue files originally, so the login code was in <code>Login.vue</code> and not accessible to my vue-router. It&#39;d make sense to extract the authentication service out so it can be accessed by both the router and the Vue object. I prefer to keep my <code>user</code> object in my <code>$root</code>.</p>
+<p><code>/services/auth.js</code></p>
+<pre><code class="language-javascript">import {router} from &#39;../app.js&#39;
+
+export default {
+
+    // authentication status
+    authenticated: false,
+
+    // Send a request to the login URL and save the returned JWT
+    login(context, creds, redirect) {
+        context.$http.post(&#39;/api/login&#39;, creds, (data) =&gt; {
+            localStorage.setItem(&#39;user&#39;, JSON.stringify(data))
+
+            this.authenticated = true
+            context.$root.user = data
+
+            // Redirect to a specified route
+            if (redirect) {
+                router.go(redirect)
+            }
+
+        }).error((errors) =&gt; {
+            context.errors = errors;
+        })
+    },
+
+    // To log out
+    logout: function() {
+        localStorage.removeItem(&#39;user&#39;);
+        this.authenticated = false;
+        router.go(&#39;/login&#39;)
+    }
+}
+</code></pre>
+<h4>Use a custom field <code>auth</code> and check authentication using <code>beforeEach</code></h4><p>I add an <code>auth: true</code> to the root route of my application, so all my app routes are now &quot;authed&quot; :) When a nested route is matched, all custom fields will be merged on to the same <code>$route</code> object. When a sub route and a parent route has the same custom field, the sub route&#39;s value will overwrite the parent&#39;s.</p>
+<p>A condensed version of my <code>app.js</code> - hopefully it provides an example of how your router, auth service, and root Vue object should interact.</p>
+<pre><code class="language-javascript">
+export var router = new VueRouter();
+
+router.map({
+    &#39;/&#39;: {
+        component: require(&#39;./views/App.vue&#39;),
+        subRoutes: {
+            &#39;/&#39;: {
+                component: require(&#39;./views/Dashboard.vue&#39;),
+                name: &#39;Dashboard&#39;
+            },
+            &#39;settings&#39;: {
+                component: require(&#39;./views/settings/Settings.vue&#39;),
+                name: &#39;Settings&#39;
+            },
+        },
+        auth: true
+    },
+    &#39;login&#39;: {
+        component: require(&#39;./views/Login.vue&#39;)
+    }
+});
+
+// authentication service
+import Auth from &#39;./services/auth.js&#39;;
+
+router.beforeEach(function (transition) {
+    if (transition.to.auth &amp;&amp; !Auth.authenticated) {
+        // if route requires auth and user isn&#39;t authenticated
+        transition.redirect(&#39;/login&#39;)
+    } else {
+        transition.next()
+    }
+})
+
+router.start(Vue.extend({
+    data: function() {
+        return { user: {} };
+    },
+    computed: {
+        auth: function() {
+            return Auth;
+        }
+    },
+    methods: {
+        checkLocalStorage: function() {
+            if (localStorage.user) {
+                this.user = JSON.parse(localStorage.user);
+                Vue.http.headers.common[&#39;Authorization&#39;] = &#39;Bearer &#39; + this.user.api_token;
+                Auth.authenticated = true;
+            }
+        },
+        logout: function() {
+            this.user = {};
+            Auth.logout();
+        }
+    },
+    ready: function() {
+        this.checkLocalStorage();
+    }
+}), &#39;#app&#39;);
+</code></pre>
+]]></description>
+          <pubDate>Sat May 07 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
+        </item>
+      
+    
+       
+        <item>
           <title>Set up and run Selenium on CentOS</title>
           <description><![CDATA[<p>Getting Selenium + Chrome + CentOS up was a nightmare. I give up on Chrome and  ChromeDriver on CentOS. I had Selenium and Chrome working locally on my Mac, but the exact steps do not rollover. After hours, I switched over to Firefox and it worked in 5 minutes. No additional driver needed either.</p>
 <p>Here&#39;s my steps for running Selenium WebDriver in PHP on CentOS 7, using <strong><em>Firefox</em></strong>. I had a fresh server with nothing installed. You&#39;ll want to check out the repo (<a href="https://github.com/facebook/php-webdriver">facebook/php-webdriver</a>) and get things running locally before proceeding.</p>
