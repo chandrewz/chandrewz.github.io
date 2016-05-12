@@ -118,7 +118,7 @@ router.start(Vue.extend({
 }), &#39;#app&#39;);
 </code></pre>
 ]]></description>
-          <pubDate>Sat May 07 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <pubDate>Wed May 11 2016 19:00:00 GMT-0500 (CDT)</pubDate>
           <link>http://chandrewz.github.io/blog/[object Object]</link>
           <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
         </item>
