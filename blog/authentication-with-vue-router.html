@@ -65,7 +65,7 @@
 <li>You see a &quot;flash&quot; of the the dashboard before being redirected the the login page because <code>ready()</code> fires the redirect after part of the rendering is done.</li>
 </ol>
 <p>So I knew I had to do it better.</p>
-<p>Ryan Chenkie wrote a tutorial on authentication: <a href="https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/">Build an App with Vue.js: From Authentication to Calling an API</a>. It helped me get started but I ended up doing things a differently. He uses vue-router&#39;s <code>canActivate</code> hook and injects it in his <code>.vue</code> file. I noticed in vue-router&#39;s documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of <code>beforeEach</code> like the documentation does in its example.</p>
+<p>Ryan Chenkie wrote a tutorial on authentication: <a href="https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/">Build an App with Vue.js: From Authentication to Calling an API</a>. It helped me get started but I ended up doing things a bit differently. He uses vue-router&#39;s <code>canActivate</code> hook and injects it in his <code>.vue</code> file. I noticed in vue-router&#39;s documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of <code>beforeEach</code> like the documentation does in its example.</p>
 <h4>Write an auth service</h4><p>I had my login/logout functions in my .vue files originally, so the login code was in <code>Login.vue</code> and not accessible to my vue-router. It&#39;d make sense to extract the authentication service out so it can be accessed by both the router and the Vue object. I prefer to keep my <code>user</code> object in my <code>$root</code>.</p>
 <p><code>/services/auth.js</code></p>
 <pre><code class="language-javascript">import {router} from &#39;../app.js&#39;
@@ -174,7 +174,7 @@ router.start(Vue.extend({
 
   <nav class="subnav">
 
-    <div class="subnav-pagination"><a href="selenium-on-centos" class="subnav-pagination-item">←</a></div>
+    <div class="subnav-pagination"><a href="selenium-on-centos" class="subnav-pagination-item">←</a><a href="some-aws-ec2-commands" class="subnav-pagination-item">→</a></div>
 
   </nav>
 

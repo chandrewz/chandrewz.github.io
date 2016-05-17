@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html id="top">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+  <title>Some AWS EC2 Commands – code, work, webdev</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- {% if page.blog %}
+  <link rel="alternate" type="application/atom+xml" title="simurai" href="http://feeds.feedburner.com/simurai">
+  {% endif %} -->
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <aside class="aside">
+  <a href="/">
+    <!-- If you want to use your picture instead,
+         you can give the image the `aside-avatar` class -->
+    <img class="" src="/img/stamp.svg" alt="Wololo avatar">
+  </a>
+  <a class="aside-hamburger" href="#top"></a>
+  <div class="aside-target">
+    <a href="/">
+      <h1 class="aside-title">Wololo</h1>
+    </a>
+    <p class="aside-description">code, work, webdev</p>
+    <nav class="nav">
+    <div class="nav-group">
+        <a class="nav-item active" href="/blog">Blog</a>
+    </div>
+    <div class="nav-group">
+        <a class="nav-item " href="/about">About</a>
+        <a class="nav-item " href="/contact">Contact</a>
+    </div>
+</nav>
+
+  </div>
+</aside>
+
+
+        
+          
+
+  <main class="main">
+
+      <article class="article">
+          <h1>Some AWS EC2 Commands</h1>
+          <div class="article-meta">
+              
+                <a href="http://twitter.com/andrwchan">Andrew</a>
+              
+              <time class="time"> on 2016-05-17</time>
+          </div>
+          <p>A few AWS EC2 commands I need to remember.</p>
+<h4>SSH into an EC2 server</h4><pre><code>ssh -i ~/.ssh/aws-first.pem ec2-user@ec2-52-40-3-169.us-west-2.compute.amazonaws.com
+</code></pre><h4>Create a new instance</h4><p>XXX is the ID of the image.</p>
+<pre><code>aws ec2 run-instances --image-id ami-XXX --instance-type t2.micro
+</code></pre>
+      </article>
+
+      
+
+
+  </main>
+
+  <nav class="subnav">
+
+    <div class="subnav-pagination"><a href="authentication-with-vue-router" class="subnav-pagination-item">←</a></div>
+
+  </nav>
+
+
+
+        
+
+        <footer class="footer">
+    <a href="#top">
+        <img class="footer-logo" src="/img/stamp.svg" alt="Wololo stamp">
+    </a>
+    <p><small>Powered by <a href="http://harpjs.com">Harp</a>.</p>
+</footer>
+
+    </div>
+
+    
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-77434816-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/prism.js"></script>
+
+</body>
+</html>

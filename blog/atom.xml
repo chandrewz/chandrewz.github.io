@@ -10,6 +10,20 @@
     
        
         <item>
+          <title>Some AWS EC2 Commands</title>
+          <description><![CDATA[<p>A few AWS EC2 commands I need to remember.</p>
+<h4>SSH into an EC2 server</h4><pre><code>ssh -i ~/.ssh/aws-first.pem ec2-user@ec2-52-40-3-169.us-west-2.compute.amazonaws.com
+</code></pre><h4>Create a new instance</h4><p>XXX is the ID of the image.</p>
+<pre><code>aws ec2 run-instances --image-id ami-XXX --instance-type t2.micro
+</code></pre>]]></description>
+          <pubDate>Mon May 16 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
+        </item>
+      
+    
+       
+        <item>
           <title>Authentication with Vue Router</title>
           <description><![CDATA[<p>I&#39;ve been working with <a href="https://vuejs.org/">Vue.js</a> for a project for about a month now, and it&#39;s pretty fun! I was searching up how to handle authentication with <a href="http://router.vuejs.org/en/">vue-router</a> and there weren&#39;t too many resources. I originally had a parent function that handled redirects upon <code>ready()</code>, but there are a few problems:</p>
 <ol>
@@ -17,7 +31,7 @@
 <li>You see a &quot;flash&quot; of the the dashboard before being redirected the the login page because <code>ready()</code> fires the redirect after part of the rendering is done.</li>
 </ol>
 <p>So I knew I had to do it better.</p>
-<p>Ryan Chenkie wrote a tutorial on authentication: <a href="https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/">Build an App with Vue.js: From Authentication to Calling an API</a>. It helped me get started but I ended up doing things a differently. He uses vue-router&#39;s <code>canActivate</code> hook and injects it in his <code>.vue</code> file. I noticed in vue-router&#39;s documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of <code>beforeEach</code> like the documentation does in its example.</p>
+<p>Ryan Chenkie wrote a tutorial on authentication: <a href="https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/">Build an App with Vue.js: From Authentication to Calling an API</a>. It helped me get started but I ended up doing things a bit differently. He uses vue-router&#39;s <code>canActivate</code> hook and injects it in his <code>.vue</code> file. I noticed in vue-router&#39;s documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of <code>beforeEach</code> like the documentation does in its example.</p>
 <h4>Write an auth service</h4><p>I had my login/logout functions in my .vue files originally, so the login code was in <code>Login.vue</code> and not accessible to my vue-router. It&#39;d make sense to extract the authentication service out so it can be accessed by both the router and the Vue object. I prefer to keep my <code>user</code> object in my <code>$root</code>.</p>
 <p><code>/services/auth.js</code></p>
 <pre><code class="language-javascript">import {router} from &#39;../app.js&#39;

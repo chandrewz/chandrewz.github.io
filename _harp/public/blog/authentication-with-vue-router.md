@@ -4,7 +4,7 @@ I've been working with [Vue.js](https://vuejs.org/) for a project for about a mo
 
 So I knew I had to do it better.
 
-Ryan Chenkie wrote a tutorial on authentication: [Build an App with Vue.js: From Authentication to Calling an API](https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/). It helped me get started but I ended up doing things a differently. He uses vue-router's `canActivate` hook and injects it in his `.vue` file. I noticed in vue-router's documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of `beforeEach` like the documentation does in its example.
+Ryan Chenkie wrote a tutorial on authentication: [Build an App with Vue.js: From Authentication to Calling an API](https://auth0.com/blog/2015/11/13/build-an-app-with-vuejs/). It helped me get started but I ended up doing things a bit differently. He uses vue-router's `canActivate` hook and injects it in his `.vue` file. I noticed in vue-router's documentation, there are custom fields which can be used for authentication. So I wanted to take advantage of `beforeEach` like the documentation does in its example.
 
 #### Write an auth service
 

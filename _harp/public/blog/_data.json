@@ -2,6 +2,12 @@
   "atom": {
     "layout": false
   },
+  "some-aws-ec2-commands": {
+    "title": "Some AWS EC2 Commands",
+    "date": "2016-05-17",
+    "author": "andrew",
+    "tags": "aws"
+  },
   "authentication-with-vue-router": {
     "title": "Authentication with Vue Router",
     "date": "2016-05-12",
