@@ -13,7 +13,7 @@
             <%= post.title %>
           </h2>
           <% if(post.author) { %>
-            <a href="http://twitter.com/<%= authors[post.author].twitter %>"><%= authors[post.author].name %></a>
+            <a href="http://stackoverflow.com/users/<%= authors[post.author].stackoverflow %>"><%= authors[post.author].name %></a>
           <% } %>
           <time class="time time--inline"> on <%= post.date %></time>
         </a>
