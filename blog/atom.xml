@@ -10,6 +10,69 @@
     
        
         <item>
+          <title>Laravel and Scheduled Jobs on Heroku</title>
+          <description><![CDATA[<h4>Creating the Job</h4><p>First, I want to create a job that sends the email.</p>
+<pre><code>php artisan make:job SendReminderEmail --sync
+</code></pre><p>This command will generate a new class in the app/Jobs directory. <code>--sync</code> overwrites the default queue implmentation. Starting with Laravel 5.2, <code>make:job</code> defaults to queued jobs so whenever <code>dispatch()</code> is called, the job will end up in your queue. For my job, I didn&#39;t want it queued. I wanted it to run and be done.</p>
+<p>Simple enough. My <code>handle()</code> method simply sends the email.</p>
+<pre><code class="language-php">&lt;?php
+
+namespace App\Jobs;
+
+use App\User;
+use App\Jobs\Job;
+use Illuminate\Contracts\Mail\Mailer;
+
+class SendReminderEmail extends Job
+{
+
+    protected $user;
+
+    /**
+     * Create a new job instance.
+     *
+     * @param  User $user
+     * @return void
+     */
+    public function __construct(User $user)
+    {
+        $this-&gt;user = $user;
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @param  Mailer $mailer
+     * @return void
+     */
+    public function handle(Mailer $mailer)
+    {
+        $mailer-&gt;send(&#39;emails.reminder&#39;, [&#39;user&#39; =&gt; $this-&gt;user], function ($m) {
+            $m-&gt;to($this-&gt;user-&gt;email, &quot;$this-&gt;user-&gt;first $this-&gt;user-&gt;last&quot;)-&gt;subject(&#39;Hey, you haven\&#39;t finished your registration!&#39;);
+        });
+    }
+}
+</code></pre>
+<h4>Create php artisan console command</h4><p>Now I want my scheduler to call this job every so often. The scheduler needs some way to run it, so I went created an artisan command that can be ran from the terminal.</p>
+<pre><code>php artisan make:console SendEmails --command=emails:send
+</code></pre><p>This generates a class at <code>app/Console/Commands/SendEmails.php</code>. The <code>--command</code> option assigns the terminal command name.</p>
+<p><code>SendEmails</code> finds all users that need an email to be sent, and dispatches the <code>SendReminderEmail</code> job.</p>
+<h4>Scheduler on Heroku</h4><p>Now to get the scheduler up on Heroku.</p>
+<pre><code>heroku addons:create scheduler:standard
+</code></pre><p>I logged into my app&#39;s Heroku dashboard. I set the frequency to every 10 minutes with the following command:</p>
+<pre><code>php artisan emails:send
+</code></pre><p>And to test if your artisan command is working properly:</p>
+<pre><code>heroku run php artisan emails:send
+</code></pre><p>I started seeing emails in my inbox, nice! Now for some fine tuning.</p>
+]]></description>
+          <pubDate>Wed May 25 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
+        </item>
+      
+    
+       
+        <item>
           <title>Some AWS EC2 Commands</title>
           <description><![CDATA[<p>A few AWS EC2 commands I need to remember.</p>
 <h4>SSH into an EC2 server</h4><pre><code>ssh -i ~/.ssh/aws-first.pem ec2-user@ec2-52-40-3-169.us-west-2.compute.amazonaws.com

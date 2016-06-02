@@ -2,29 +2,35 @@
   "atom": {
     "layout": false
   },
+  "laravel-and-scheduled-jobs-on-heroku": {
+    "title": "Laravel and Scheduled Jobs on Heroku",
+    "date": "2016-05-26",
+    "author": "andrew",
+    "tags": ["laravel", "heroku"]
+  },
   "some-aws-ec2-commands": {
     "title": "Some AWS EC2 Commands",
     "date": "2016-05-17",
     "author": "andrew",
-    "tags": "aws"
+    "tags": ["aws"]
   },
   "authentication-with-vue-router": {
     "title": "Authentication with Vue Router",
     "date": "2016-05-12",
     "author": "andrew",
-    "tags": "vuejs"
+    "tags": ["vuejs"]
   },
   "selenium-on-centos": {
     "title": "Set up and run Selenium on CentOS",
     "date": "2016-05-08",
     "author": "andrew",
-    "tags": "selenium"
+    "tags": ["selenium"]
   },
   "start-a-blog-with-harp": {
     "title": "Start a blog with Harp",
     "date": "2016-05-07",
     "author": "andrew",
-    "tags": "harp"
+    "tags": ["harp"]
   },
   "hello-world": {
     "title": "Heyo World",

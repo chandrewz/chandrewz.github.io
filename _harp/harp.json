@@ -17,7 +17,8 @@
     "service": {
       "analytics": "UA-77434816-1",
       "service": "example",
-      "prism": true
+      "prism": true,
+      "disqus": "chandrew"
     }
   },
   "domains": []
