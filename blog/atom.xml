@@ -10,6 +10,24 @@
     
        
         <item>
+          <title>Downloading Large CSV FIles via HREF</title>
+          <description><![CDATA[<p>I had a web application that parsed CSV files. After parsing, the CSV would be downloadable in a <code>href</code> tag. Small CSV files were fine. Once I started parsing large ones, downloading it resulted in <code>Failed - Network error</code>. I suspected that it is because of <code>href</code>&#39;s length limit.</p>
+<p>The solution is to use a <a href="https://developer.mozilla.org/en/docs/Web/API/Blob">Blob</a>.</p>
+<h4>Before</h4><pre><code class="language-javascript">var csvData = &#39;data:application/csv;charset=utf-8,&#39; + encodeURIComponent(unparsed);
+$(&#39;#download&#39;).attr(&#39;href&#39;, csvData);
+</code></pre>
+<h4>After using Blob</h4><pre><code class="language-javascript">var csvData = new Blob([unparsed], { type: &#39;text/csv&#39; });
+$(&#39;#download&#39;).attr(&#39;href&#39;, URL.createObjectURL(csvData));
+</code></pre>
+]]></description>
+          <pubDate>Wed Aug 31 2016 19:00:00 GMT-0500 (CDT)</pubDate>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
+        </item>
+      
+    
+       
+        <item>
           <title>Laravel and Scheduled Jobs on Heroku</title>
           <description><![CDATA[<h4>Creating the Job</h4><p>First, I want to create a job that sends the email.</p>
 <pre><code>php artisan make:job SendReminderEmail --sync

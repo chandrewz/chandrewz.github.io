@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-  <title>Laravel and Scheduled Jobs on Heroku – code, work, webdev</title>
+  <title>Downloading Large CSV FIles via HREF – code, work, webdev</title>
 
   <link rel="shortcut icon" href="img/favicon.ico">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -52,66 +52,21 @@
   <main class="main">
 
       <article class="article">
-          <h1>Laravel and Scheduled Jobs on Heroku</h1>
+          <h1>Downloading Large CSV FIles via HREF</h1>
           <div class="article-meta">
               
                 <a href="http://twitter.com/andrwchan">Andrew</a>
               
-              <time class="time"> on 2016-05-26</time>
+              <time class="time"> on 2016-09-01</time>
           </div>
-          <h4>Creating the Job</h4><p>First, I want to create a job that sends the email.</p>
-<pre><code>php artisan make:job SendReminderEmail --sync
-</code></pre><p>This command will generate a new class in the app/Jobs directory. <code>--sync</code> overwrites the default queue implmentation. Starting with Laravel 5.2, <code>make:job</code> defaults to queued jobs so whenever <code>dispatch()</code> is called, the job will end up in your queue. For my job, I didn&#39;t want it queued. I wanted it to run and be done.</p>
-<p>Simple enough. My <code>handle()</code> method simply sends the email.</p>
-<pre><code class="language-php">&lt;?php
-
-namespace App\Jobs;
-
-use App\User;
-use App\Jobs\Job;
-use Illuminate\Contracts\Mail\Mailer;
-
-class SendReminderEmail extends Job
-{
-
-    protected $user;
-
-    /**
-     * Create a new job instance.
-     *
-     * @param  User $user
-     * @return void
-     */
-    public function __construct(User $user)
-    {
-        $this-&gt;user = $user;
-    }
-
-    /**
-     * Execute the job.
-     *
-     * @param  Mailer $mailer
-     * @return void
-     */
-    public function handle(Mailer $mailer)
-    {
-        $mailer-&gt;send(&#39;emails.reminder&#39;, [&#39;user&#39; =&gt; $this-&gt;user], function ($m) {
-            $m-&gt;to($this-&gt;user-&gt;email, &quot;$this-&gt;user-&gt;first $this-&gt;user-&gt;last&quot;)-&gt;subject(&#39;Hey, you haven\&#39;t finished your registration!&#39;);
-        });
-    }
-}
+          <p>I had a web application that parsed CSV files. After parsing, the CSV would be downloadable in a <code>href</code> tag. Small CSV files were fine. Once I started parsing large ones, downloading it resulted in <code>Failed - Network error</code>. I suspected that it is because of <code>href</code>&#39;s length limit.</p>
+<p>The solution is to use a <a href="https://developer.mozilla.org/en/docs/Web/API/Blob">Blob</a>.</p>
+<h4>Before</h4><pre><code class="language-javascript">var csvData = &#39;data:application/csv;charset=utf-8,&#39; + encodeURIComponent(unparsed);
+$(&#39;#download&#39;).attr(&#39;href&#39;, csvData);
 </code></pre>
-<h4>Create php artisan console command</h4><p>Now I want my scheduler to call this job every so often. The scheduler needs some way to run it, so I went created an artisan command that can be ran from the terminal.</p>
-<pre><code>php artisan make:console SendEmails --command=emails:send
-</code></pre><p>This generates a class at <code>app/Console/Commands/SendEmails.php</code>. The <code>--command</code> option assigns the terminal command name.</p>
-<p><code>SendEmails</code> finds all users that need an email to be sent, and dispatches the <code>SendReminderEmail</code> job.</p>
-<h4>Scheduler on Heroku</h4><p>Now to get the scheduler up on Heroku.</p>
-<pre><code>heroku addons:create scheduler:standard
-</code></pre><p>I logged into my app&#39;s Heroku dashboard. I set the frequency to every 10 minutes with the following command:</p>
-<pre><code>php artisan emails:send
-</code></pre><p>And to test if your artisan command is working properly:</p>
-<pre><code>heroku run php artisan emails:send
-</code></pre><p>I started seeing emails in my inbox, nice! Now for some fine tuning.</p>
+<h4>After using Blob</h4><pre><code class="language-javascript">var csvData = new Blob([unparsed], { type: &#39;text/csv&#39; });
+$(&#39;#download&#39;).attr(&#39;href&#39;, URL.createObjectURL(csvData));
+</code></pre>
       </article>
 
       
@@ -138,7 +93,7 @@ class SendReminderEmail extends Job
 
   <nav class="subnav">
 
-    <div class="subnav-pagination"><a href="some-aws-ec2-commands" class="subnav-pagination-item">←</a><a href="downloading-large-csv-files-via-href" class="subnav-pagination-item">→</a></div>
+    <div class="subnav-pagination"><a href="laravel-and-scheduled-jobs-on-heroku" class="subnav-pagination-item">←</a></div>
 
   </nav>
 
