@@ -10,6 +10,40 @@
     
        
         <item>
+          <title>Safari Javascript Objects With Numeric Keys</title>
+          <description><![CDATA[<p>While working on my Vue.js project, I discovered that objects in Safari behaved differently than Chrome and Firefox.</p>
+<p>My server would return an object that looked like this:</p>
+<pre><code class="language-json">&quot;data&quot;: {
+    &quot;2000&quot;:-0.091,
+    &quot;2001&quot;:-0.1189,
+    &quot;2002&quot;:-0.221,
+    &quot;2003&quot;:0.2868,
+    &quot;2004&quot;:0.1088,
+    &quot;2005&quot;:0.0491,
+    &quot;2006&quot;:0.1579,
+    &quot;2007&quot;:0.0549,
+    &quot;2008&quot;:-0.37,
+    &quot;2009&quot;:0.2646,
+    &quot;2010&quot;:0.1506,
+    &quot;2011&quot;:0.0211,
+    &quot;2012&quot;:0.16,
+    &quot;2013&quot;:0.3239,
+    &quot;2015&quot;:0.012,
+    &quot;2014&quot;:0.1369,
+    &quot;2016&quot;:0.1196
+}
+</code></pre>
+<p>The problem begins when Safari decides to add additional keys starting from 0. My data object would be keyed from 0 to 2016, ONLY ON SAFARI. So a calculation like the average of the data gets divided by 2017 rather than 17. Or when I am trying to loop through, null values are read from 0 to 1999.</p>
+<p>For my use case, rather than relying on <code>for (var i in data)</code>, my solution was to specifically read the data of the years 2000 to the current year (minus one).</p>
+]]></description>
+          <pubDate>Mon Aug 21 2017 19:00:00 GMT-0500 (CDT)</pubDate>
+          <link>http://chandrewz.github.io/blog/[object Object]</link>
+          <guid isPermaLink="true">http://chandrewz.github.io/blog/[object Object]</guid>
+        </item>
+      
+    
+       
+        <item>
           <title>Downloading Large CSV FIles via HREF</title>
           <description><![CDATA[<p>I had a web application that parsed CSV files. After parsing, the CSV would be downloadable in a <code>href</code> tag. Small CSV files were fine. Once I started parsing large ones, downloading it resulted in <code>Failed - Network error</code>. I suspected that it is because of <code>href</code>&#39;s length limit.</p>
 <p>The solution is to use a <a href="https://developer.mozilla.org/en/docs/Web/API/Blob">Blob</a>.</p>

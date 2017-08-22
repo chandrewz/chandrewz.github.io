@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-  <title>Downloading Large CSV FIles via HREF – code, work, webdev</title>
+  <title>Safari Javascript Objects With Numeric Keys – code, work, webdev</title>
 
   <link rel="shortcut icon" href="img/favicon.ico">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -52,21 +52,37 @@
   <main class="main">
 
       <article class="article">
-          <h1>Downloading Large CSV FIles via HREF</h1>
+          <h1>Safari Javascript Objects With Numeric Keys</h1>
           <div class="article-meta">
               
                 <a href="http://twitter.com/andrwchan">Andrew</a>
               
-              <time class="time"> on 2016-09-01</time>
+              <time class="time"> on 2017-08-22</time>
           </div>
-          <p>I had a web application that parsed CSV files. After parsing, the CSV would be downloadable in a <code>href</code> tag. Small CSV files were fine. Once I started parsing large ones, downloading it resulted in <code>Failed - Network error</code>. I suspected that it is because of <code>href</code>&#39;s length limit.</p>
-<p>The solution is to use a <a href="https://developer.mozilla.org/en/docs/Web/API/Blob">Blob</a>.</p>
-<h4>Before</h4><pre><code class="language-javascript">var csvData = &#39;data:application/csv;charset=utf-8,&#39; + encodeURIComponent(unparsed);
-$(&#39;#download&#39;).attr(&#39;href&#39;, csvData);
+          <p>While working on my Vue.js project, I discovered that objects in Safari behaved differently than Chrome and Firefox.</p>
+<p>My server would return an object that looked like this:</p>
+<pre><code class="language-json">&quot;data&quot;: {
+    &quot;2000&quot;:-0.091,
+    &quot;2001&quot;:-0.1189,
+    &quot;2002&quot;:-0.221,
+    &quot;2003&quot;:0.2868,
+    &quot;2004&quot;:0.1088,
+    &quot;2005&quot;:0.0491,
+    &quot;2006&quot;:0.1579,
+    &quot;2007&quot;:0.0549,
+    &quot;2008&quot;:-0.37,
+    &quot;2009&quot;:0.2646,
+    &quot;2010&quot;:0.1506,
+    &quot;2011&quot;:0.0211,
+    &quot;2012&quot;:0.16,
+    &quot;2013&quot;:0.3239,
+    &quot;2015&quot;:0.012,
+    &quot;2014&quot;:0.1369,
+    &quot;2016&quot;:0.1196
+}
 </code></pre>
-<h4>After using Blob</h4><pre><code class="language-javascript">var csvData = new Blob([unparsed], { type: &#39;text/csv&#39; });
-$(&#39;#download&#39;).attr(&#39;href&#39;, URL.createObjectURL(csvData));
-</code></pre>
+<p>The problem begins when Safari decides to add additional keys starting from 0. My data object would be keyed from 0 to 2016, ONLY ON SAFARI. So a calculation like the average of the data gets divided by 2017 rather than 17. Or when I am trying to loop through, null values are read from 0 to 1999.</p>
+<p>For my use case, rather than relying on <code>for (var i in data)</code>, my solution was to specifically read the data of the years 2000 to the current year (minus one).</p>
       </article>
 
       
@@ -93,7 +109,7 @@ $(&#39;#download&#39;).attr(&#39;href&#39;, URL.createObjectURL(csvData));
 
   <nav class="subnav">
 
-    <div class="subnav-pagination"><a href="laravel-and-scheduled-jobs-on-heroku" class="subnav-pagination-item">←</a><a href="safari-javascript-objects" class="subnav-pagination-item">→</a></div>
+    <div class="subnav-pagination"><a href="downloading-large-csv-files-via-href" class="subnav-pagination-item">←</a></div>
 
   </nav>
 

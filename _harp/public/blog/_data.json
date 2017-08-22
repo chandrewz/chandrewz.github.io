@@ -2,6 +2,12 @@
   "atom": {
     "layout": false
   },
+  "safari-javascript-objects": {
+    "title": "Safari Javascript Objects With Numeric Keys",
+    "date": "2017-08-22",
+    "author": "andrew",
+    "tags": ["javascript", "vuejs", "safari"]
+  },
   "downloading-large-csv-files-via-href": {
     "title": "Downloading Large CSV FIles via HREF",
     "date": "2016-09-01",
